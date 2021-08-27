@@ -8,6 +8,15 @@
     line-height: 1.5rem;
     list-style: none;
     text-decoration: none;
+    transition: all ease-in 0.9ms;
+}
+
+.linkHeader:hover,
+.linkProfil:hover,
+.linkReglages:hover,
+.linkCommunaute:hover {
+    transform: scale(1.05);
+    color: #e60000;
 }
 
 .mainNavBar {

@@ -8,7 +8,7 @@ import MainNavBar from '../MainNavBar/MainNavBar';
 class Header extends Component {
     render() {
         return (
-            <header>
+            <header className="header">
                 <Link to='/'>
                     <img src={logo} alt='logoHeader' className="logoHeader"></img>
                 </Link>

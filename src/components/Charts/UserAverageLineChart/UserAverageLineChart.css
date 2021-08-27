@@ -1,0 +1,20 @@
+.lineChart {
+    background-color: #e60000;
+    border-radius: .3125rem;
+    height: 16.4375rem;
+    width: 16.125rem;
+}
+
+.sessionsLineChart {
+    position: relative;
+}
+
+.sessionsLineChartTitle {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 500;
+    left: 2rem;
+    margin: 0;
+    position: absolute;
+    top: 1.5rem;
+}
