@@ -2,4 +2,15 @@
     left: 15%;
     position: absolute;
     top: 9rem;
+    width: 835px;
+}
+
+.chartsHorizontal {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    height: 1024px;
+    width: 1440px;
 }

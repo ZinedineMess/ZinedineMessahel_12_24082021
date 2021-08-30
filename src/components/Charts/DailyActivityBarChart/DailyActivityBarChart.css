@@ -4,10 +4,9 @@
     box-shadow: .25rem .125rem .25rem rgba(0, 0, 0, 0.0212249);
     display: flex;
     flex-direction: column;
-    height: 21.25rem;
+    height: 320px;
     margin-bottom: 2rem;
     padding: 1.5rem 1.875rem;
-    width: 52.1875rem;
 }
 
 .barChartHeader {

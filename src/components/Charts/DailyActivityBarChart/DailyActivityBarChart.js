@@ -51,8 +51,6 @@ class DailyActivityBarChart extends Component {
         return(
             <ResponsiveContainer width="100%" height="90%">
                 <BarChart
-                    width={835}
-                    height={290}
                     data={this.state.data}
                     margin={{
                     top: 50,
