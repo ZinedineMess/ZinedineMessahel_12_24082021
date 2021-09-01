@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import PropTypes from "prop-types";
 import './CustomTooltipDailyActivity.css';
+import PropTypes from "prop-types";
+import React, {Component} from 'react';
 
 class CustomTooltipDailyActivity extends Component {
     render() {

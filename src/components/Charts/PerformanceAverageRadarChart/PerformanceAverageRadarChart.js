@@ -1,30 +1,39 @@
-import React, { Component } from "react";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
+import Loader from '../../Loader/Loader';
 import './PerformanceAverageRadarChart.css';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
+import React, { Component } from "react";
 
 class PerformanceAverageRadarChart extends Component {
     state = {
-        data : this.props.data[0],
+        data : this.props.data,
+        loading : true,
     }
 
-    getPerformanceAverageData = () => {
-        let performanceAverageData = [];
+    componentDidMount() {
+        fetch(this.props.data)
+        .then(
+            this.setState({ loading: false })
+        )
+    }
 
-        this.state.data.data.map((data, index) => {
-            return performanceAverageData.push({
-                subject:
-                    this.state.data.kind[index + 1].charAt(0).toUpperCase() +
-                    this.state.data.kind[index + 1].slice(1),
-                value: data.value,
-            })
-        })
-        return performanceAverageData;
+    render() {
+        return this.state.loading ? 
+        (
+            <article className="performanceRadarChart">
+                <Loader />
+            </article>
+        ) 
+        : (
+            <article className="performanceRadarChart">
+                {this.getPerformanceRadarChart()}
+            </article>
+        )
     }
 
     getPerformanceRadarChart = () => {
         return (
             <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart cx="50%" cy="50%" outerRadius="70%" data={this.getPerformanceAverageData()}>
+                    <RadarChart cx="50%" cy="50%" outerRadius="70%" data={this.state.data}>
                         <PolarGrid radialLines={false} />
                         <PolarAngleAxis 
                             dataKey="subject" 
@@ -42,14 +51,6 @@ class PerformanceAverageRadarChart extends Component {
                         />
                     </RadarChart>
                 </ResponsiveContainer>
-        )
-    }
-
-    render() {
-        return (
-            <article className="performanceRadarChart">
-                {this.getPerformanceRadarChart()}
-            </article>
         )
     }
 }

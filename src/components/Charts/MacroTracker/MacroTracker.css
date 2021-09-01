@@ -1,0 +1,49 @@
+.macroTracker {
+    align-items: center;
+    background: #FBFBFB;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0212249);
+    display: flex;
+    height: 124px;
+    justify-content: space-evenly;
+    width: 258px;
+}
+
+.macroTrackerContainerImgCalories {
+    background-color: #FBECED;
+}
+
+.macroTrackerContainerImgCalories,
+.macroTrackerContainerImgProtéines,
+.macroTrackerContainerImgGlucides,
+.macroTrackerContainerImgLipides {
+    align-items: center;
+    border-radius: 6px;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    width: 60px;
+}
+
+.macroTrackerContainerImgGlucides {
+    background-color: #FCF6E3;
+}
+
+.macroTrackerContainerImgLipides {
+    background-color: #FFE9EF;
+}
+
+.macroTrackerContainerImgProtéines {
+    background-color: #E6F5FC;
+}
+
+.macroTrackerQuantity {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.macroTrackerType {
+    color: #74798C;
+    font-size: 14px;
+    font-weight: 500;
+}

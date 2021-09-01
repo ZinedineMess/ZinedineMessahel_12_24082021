@@ -1,13 +1,35 @@
-import React, {Component} from 'react';
 import {BarChart, Bar, CartesianGrid, Tooltip, ResponsiveContainer, XAxis, YAxis} from 'recharts';
-import './DailyActivityBarChart.css';
-
-// CUSTOM TOOLTIP
 import CustomTooltipDailyActivity from '../CustomTooltip/CustomTooltipDailyActivity/CustomTooltipDailyActivity';
+import './DailyActivityBarChart.css';
+import Loader from '../../Loader/Loader';
+import React, {Component} from 'react';
 
 class DailyActivityBarChart extends Component {
     state = {
         data : this.props.data,
+        loading: true,
+    }
+
+    componentDidMount() {
+        fetch(this.props.data)
+        .then(
+            this.setState({ loading: false })
+        )
+    }
+
+    render() {
+        return this.state.loading ? 
+        (
+            <section className="barChart">
+                <Loader />
+            </section>
+        )
+        : (
+            <section className="barChart">
+                {this.getHeaderBarChart()}
+                {this.getBarChart()}
+            </section>
+        )
     }
 
     // HEADER CHART 
@@ -108,15 +130,6 @@ class DailyActivityBarChart extends Component {
                     />
                 </BarChart>
             </ResponsiveContainer>
-        )
-    }
-
-    render() {
-        return (
-            <section className="barChart">
-                {this.getHeaderBarChart()}
-                {this.getBarChart()}
-            </section>
         )
     }
 }

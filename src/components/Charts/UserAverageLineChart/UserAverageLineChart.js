@@ -1,13 +1,35 @@
-import React, { Component } from "react";
-import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
-import './UserAverageLineChart.css';
-
-// CUSTOM TOOLTIP
 import CustomTooltipSessionsAverage from "../CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
+import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
+import Loader from '../../Loader/Loader';
+import React, { Component } from "react";
+import './UserAverageLineChart.css';
 
 class UserAverageLineChart extends Component {
     state = {
         data : this.props.data,
+        loading: true,
+    }
+
+    componentDidMount() {
+        fetch(this.props.data)
+        .then(
+            this.setState({ loading: false })
+        )
+    }
+
+    render() {
+        return this.state.loading ? 
+        (
+            <article className="sessionsLineChart">
+                <Loader />
+            </article>
+        )
+        : (
+            <article className="sessionsLineChart">
+                {this.getHeaderLineChart()}
+                {this.getLineChart()}
+            </article>
+        )
     }
 
     // HEADER CHART 
@@ -31,7 +53,7 @@ class UserAverageLineChart extends Component {
                     <LineChart
                         width={500}
                         height={200}
-                        data={this.state.data.sessions}
+                        data={this.state.data}
                         syncId="anyId"
                         outerRadius="75%"
                         margin={{ top: 0, right: 12, bottom: 24, left: 12 }}
@@ -75,15 +97,6 @@ class UserAverageLineChart extends Component {
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-        )
-    }
-
-    render() {
-        return (
-            <article className="sessionsLineChart">
-                {this.getHeaderLineChart()}
-                {this.getLineChart()}
-            </article>
         )
     }
 }
