@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import ApiProvider from '../../services/Api/ApiProvider';
+import React, { Component } from 'react';
 // ASSETS 
 import calories from '../../assets/macroTracker/calories.png';
 import protein from '../../assets/macroTracker/protein.png';
@@ -11,20 +12,38 @@ import UserAverageLineChart from './UserAverageLineChart/UserAverageLineChart';
 import PerformanceAverageRadarChart from './PerformanceAverageRadarChart/PerformanceAverageRadarChart';
 import GoalPieChart from './GoalPieChart/GoalPieChart';
 import MacroTracker from './MacroTracker/MacroTracker';
-// DATA FORMAT
-import {getWelcomeData} from '../../services/data/welcomeData';
-import {getDailyActivityDataFormat} from '../../services/data/dailyActivityData';
-import {getUserAverageDataFormat} from '../../services/data/userAverageData';
-import {getPerformanceAverageDataFormat} from '../../services/data/performanceAverageData';
-import {getGoalScoreDataFormat} from '../../services/data/goalScoreData'; 
-import {getCaloriesData, getProteinsData, getCarbohydratesData, getLipidsData} from '../../services/data/macroTrackerData';
+
+// import { USER_ACTIVITY } from '../../services/mocks/mockedData';
+// import { USER_AVERAGE_SESSIONS } from '../../services/mocks/mockedData';
+// import { USER_MAIN_DATA } from '../../services/mocks/mockedData';
+// import { USER_PERFORMANCE } from '../../services/mocks/mockedData';
 
 class Charts extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            macroTrackerData : [],
+        }
+        this.apiProvider = new ApiProvider();
+    }
+
+    componentDidMount = () => {
+        this.apiProvider
+        .getMainData()
+        .then((response) => {
+            this.setState({
+                macroTrackerData: response.content.macroTracker,
+            });
+        });
+    }
+
     render () {
+        // console.log(USER_MAIN_DATA[0].userInfos.firstName);
         return (
             <section className="charts">
-                <Welcome name={getWelcomeData()}/>
-                <DailyActivityBarChart data={getDailyActivityDataFormat()}/>
+                <Welcome />
+                <DailyActivityBarChart />
                 {this.getHorizontalSectionCharts()}
                 {this.getMacroTrackerSideSection()}
             </section>
@@ -34,9 +53,9 @@ class Charts extends Component {
     getHorizontalSectionCharts = () => {
         return (
             <section className="chartsHorizontal">
-                <UserAverageLineChart data={getUserAverageDataFormat()}/>
-                <PerformanceAverageRadarChart data={getPerformanceAverageDataFormat()}/>
-                <GoalPieChart data={getGoalScoreDataFormat()} />
+                <UserAverageLineChart />
+                <PerformanceAverageRadarChart />
+                <GoalPieChart />
             </section>
         )
     }
@@ -46,31 +65,31 @@ class Charts extends Component {
             <section className="chartsVertical">
                 {/* CALORIES */}
                 <MacroTracker 
-                    data={getCaloriesData() / 1000} 
+                    data={this.state.macroTrackerData.calorieCount / 1000}
                     icon={calories} 
                     unitOfMeasure="kCal" 
-                    type="Calories"
+                    name="Calories"
                 />
                 {/* PROTEIN */}
                 <MacroTracker 
-                    data={getProteinsData()} 
+                    data={this.state.macroTrackerData.proteinCount}
                     icon={protein} 
                     unitOfMeasure="g" 
-                    type="Protéines"
+                    name="Protéines"
                 /> 
                 {/* CARBOHYDRATES */}
                 <MacroTracker 
-                    data={getCarbohydratesData()} 
+                    data={this.state.macroTrackerData.carbohydrateCount}
                     icon={carbohydrates} 
                     unitOfMeasure="g" 
-                    type="Glucides"
+                    name="Glucides"
                 />
                 {/* LIPIDS */}
                 <MacroTracker 
-                    data={getLipidsData()} 
+                    data={this.state.macroTrackerData.lipidCount}
                     icon={lipids} 
                     unitOfMeasure="g" 
-                    type="Lipides"
+                    name="Lipides"
                 />
             </section>
         )

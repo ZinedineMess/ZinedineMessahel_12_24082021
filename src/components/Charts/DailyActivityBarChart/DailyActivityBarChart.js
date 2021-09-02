@@ -1,3 +1,4 @@
+import ApiProvider from '../../../services/Api/ApiProvider';
 import {BarChart, Bar, CartesianGrid, Tooltip, ResponsiveContainer, XAxis, YAxis} from 'recharts';
 import CustomTooltipDailyActivity from '../CustomTooltip/CustomTooltipDailyActivity/CustomTooltipDailyActivity';
 import './DailyActivityBarChart.css';
@@ -5,16 +6,25 @@ import Loader from '../../Loader/Loader';
 import React, {Component} from 'react';
 
 class DailyActivityBarChart extends Component {
-    state = {
-        data : this.props.data,
-        loading: true,
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            dailyActivityData : [],
+            loading: true,
+        }
+        this.apiProvider = new ApiProvider();
     }
 
-    componentDidMount() {
-        fetch(this.props.data)
-        .then(
-            this.setState({ loading: false })
-        )
+    componentDidMount = () => {
+        this.apiProvider
+        .getUserDailyActivityData()
+        .then((response) => {
+            this.setState({
+                loading: false,
+                dailyActivityData: response.content,
+            });
+        });
     }
 
     render() {
@@ -60,12 +70,12 @@ class DailyActivityBarChart extends Component {
         let minValueYaxisKcal = 0;
         let maxValueYaxisKcal = 0;
 
-        if (this.state.data) {
-            kilogramsArray = this.state.data.map((elt) => elt.kilogram);
+        if (this.state.dailyActivityData) {
+            kilogramsArray = this.state.dailyActivityData.map((elt) => elt.kilogram);
             minValueYaxisKg = Math.min(...kilogramsArray) - 1;
             maxValueYaxisKg = Math.max(...kilogramsArray) + 1;
 
-            caloriesArray = this.state.data.map((elt) => elt.calories);
+            caloriesArray = this.state.dailyActivityData.map((elt) => elt.calories);
             minValueYaxisKcal = Math.min(...caloriesArray) - 50;
             maxValueYaxisKcal = Math.max(...caloriesArray) + 50;
         }
@@ -73,7 +83,7 @@ class DailyActivityBarChart extends Component {
         return(
             <ResponsiveContainer width="100%" height="90%">
                 <BarChart
-                    data={this.state.data}
+                    data={this.state.dailyActivityData}
                     margin={{
                     top: 50,
                     right: 10,

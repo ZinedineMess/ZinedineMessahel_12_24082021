@@ -5,13 +5,17 @@ import React, {Component, Fragment} from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 
 class DashBoard extends Component {
+    state = {
+        userId : 12,
+    }
+
     render() {   
         return (
             <Fragment>
                 <Header />
                 <main>
                     <SideBar />
-                    <Charts />
+                    <Charts userId={this.state.userId}/>
                 </main>
             </Fragment>
         )

@@ -1,19 +1,29 @@
+import ApiProvider from "../../../services/Api/ApiProvider";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import './GoalPieChart.css';
 import Loader from '../../Loader/Loader';
 import React, { Component } from "react";
 
 class GoalPieChart extends Component {
-    state = {
-        data : this.props.data,
-        loading: true,
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            goalScoreData : [],
+            loading: true,
+        }
+        this.apiProvider = new ApiProvider();
     }
 
-    componentDidMount() {
-        fetch(this.props.data)
-        .then(
-            this.setState({ loading: false })
-        )
+    componentDidMount = () => {
+        this.apiProvider
+        .getMainData()
+        .then((response) => {
+            this.setState({
+                goalScoreData: response.content.userScore,
+                loading: false,
+            });
+        });
     }
 
     render() {
@@ -37,14 +47,14 @@ class GoalPieChart extends Component {
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
-                        data={this.state.data}
+                        data={this.state.goalScoreData}
                         dataKey="value"
                         innerRadius={70}
                         outerRadius={80}
                         startAngle={90}
                         endAngle={450}
                     >
-                        {this.state.data.map((entry, index) => (
+                        {this.state.goalScoreData.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={entry.fillColor}
@@ -60,7 +70,7 @@ class GoalPieChart extends Component {
     getPieChartInfos = () => {
         return (
             <div className="goalPieChartInfos">
-                <span className="goalPieChartScoreValue">{`${100 * this.state.data[0].value}%`}</span>
+                <span className="goalPieChartScoreValue">{`${100 * this.state.goalScoreData[0].value}%`}</span>
                 <br />
                 de votre
                 <br />

@@ -1,19 +1,29 @@
+import ApiProvider from '../../../services/Api/ApiProvider';
 import Loader from '../../Loader/Loader';
 import './PerformanceAverageRadarChart.css';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
 import React, { Component } from "react";
 
 class PerformanceAverageRadarChart extends Component {
-    state = {
-        data : this.props.data,
-        loading : true,
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            performanceAverageData : [],
+            loading: true,
+        }
+        this.apiProvider = new ApiProvider();
     }
 
-    componentDidMount() {
-        fetch(this.props.data)
-        .then(
-            this.setState({ loading: false })
-        )
+    componentDidMount = () => {
+        this.apiProvider
+        .getUserPerformanceData()
+        .then((response) => {
+            this.setState({
+                loading: false,
+                performanceAverageData: response.content,
+            });
+        });
     }
 
     render() {
@@ -33,7 +43,7 @@ class PerformanceAverageRadarChart extends Component {
     getPerformanceRadarChart = () => {
         return (
             <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart cx="50%" cy="50%" outerRadius="70%" data={this.state.data}>
+                    <RadarChart cx="50%" cy="50%" outerRadius="70%" data={this.state.performanceAverageData}>
                         <PolarGrid radialLines={false} />
                         <PolarAngleAxis 
                             dataKey="subject" 

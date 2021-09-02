@@ -1,3 +1,4 @@
+import ApiProvider from "../../../services/Api/ApiProvider";
 import CustomTooltipSessionsAverage from "../CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
 import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
 import Loader from '../../Loader/Loader';
@@ -5,16 +6,25 @@ import React, { Component } from "react";
 import './UserAverageLineChart.css';
 
 class UserAverageLineChart extends Component {
-    state = {
-        data : this.props.data,
-        loading: true,
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            userAverageData : [],
+            loading: true,
+        }
+        this.apiProvider = new ApiProvider();
     }
 
-    componentDidMount() {
-        fetch(this.props.data)
-        .then(
-            this.setState({ loading: false })
-        )
+    componentDidMount = () => {
+        this.apiProvider
+        .getUserAverageSessionData()
+        .then((response) => {
+            this.setState({
+                loading: false,
+                userAverageData: response.content,
+            });
+        });
     }
 
     render() {
@@ -53,7 +63,7 @@ class UserAverageLineChart extends Component {
                     <LineChart
                         width={500}
                         height={200}
-                        data={this.state.data}
+                        data={this.state.userAverageData}
                         syncId="anyId"
                         outerRadius="75%"
                         margin={{ top: 0, right: 12, bottom: 24, left: 12 }}
@@ -84,7 +94,7 @@ class UserAverageLineChart extends Component {
                         />
                         <Line 
                             dataKey="sessionLength" 
-                            type={`${this.state.data.userId === "12" ? "step" : "monotone"}`}
+                            type="monotone"
                             stroke="rgba(255, 255, 255, 0.6)"
                             strokeWidth={2}
                             dot={false}

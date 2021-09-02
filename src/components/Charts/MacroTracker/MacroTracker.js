@@ -4,16 +4,16 @@ import React, { Component } from "react";
 
 class MacroTracker extends Component {
     state = {
-        data : this.props.data,
-        unitOfMeasure : this.props.unitOfMeasure,
-        loader : true,
+        loading : true,
     }
 
     componentDidMount() {
         fetch(this.props.data)
         .then(
-            this.setState({ loading: false })
-        )
+            this.setState({
+                loading: false,
+            })
+        );
     }
 
     render() {
@@ -25,12 +25,12 @@ class MacroTracker extends Component {
         )
         : (
             <div className="macroTracker">
-                <div className={'macroTrackerContainerImg' + this.props.type} >
-                    <img className={'macroTrackerImg' + this.props.type} src={this.props.icon} alt=""/>
+                <div className={'macroTrackerContainerImg' + this.props.name} >
+                    <img className={'macroTrackerImg' + this.props.name} src={this.props.icon} alt=""/>
                 </div>
                 <div className="macroTrackerTxt">
-                    <p className="macroTrackerQuantity">{this.state.data} {this.state.unitOfMeasure}</p>
-                    <p className="macroTrackerType">{this.props.type}</p>
+                    <p className="macroTrackerQuantity">{this.props.data} {this.props.unitOfMeasure}</p>
+                    <p className="macroTrackerType">{this.props.name}</p>
                 </div>
             </div>
         )
