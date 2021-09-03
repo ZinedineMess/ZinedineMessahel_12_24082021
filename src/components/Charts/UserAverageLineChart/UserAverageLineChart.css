@@ -20,3 +20,16 @@
     position: absolute;
     top: 1.5rem;
 }
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .lineChart {
+        height: 11rem;
+        width: 11rem;
+    }
+
+    .sessionsLineChartTitle {
+        font-size: 0.8rem;
+        left: 1.5rem;
+        top: 1rem;
+    }
+}

@@ -25,3 +25,17 @@ main {
     height: 1024px;
     width: 100%;
 }
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .charts {
+        left: 16%;
+        top: 17%;
+        width: 620px;
+    }
+    
+    .chartsVertical {
+        height: 555px;
+        left: 41rem;
+        top: 17%;
+    }
+}

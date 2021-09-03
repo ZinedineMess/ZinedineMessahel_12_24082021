@@ -7,3 +7,10 @@
     text-align: center;
     width: 16.125rem;
 }
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .performanceRadarChart {
+        height: 11rem;
+        width: 11rem;
+    }
+}

@@ -50,7 +50,7 @@ class PerformanceAverageRadarChart extends Component {
                             stroke="white"
                             tickLine={false}
                             tick={{
-                                fontSize: 12,
+                                fontSize: 10,
                                 fontWeight: 500,
                             }} 
                         />

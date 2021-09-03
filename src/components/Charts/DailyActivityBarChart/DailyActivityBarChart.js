@@ -12,6 +12,10 @@ class DailyActivityBarChart extends Component {
         this.state = {
             dailyActivityData : [],
             loading: true,
+            mininumYaxisKg : 0,
+            maximumYaxisKg : 0,
+            minimumYaxisKcal : 0,
+            maximumYaxisKcal : 0,
         }
         this.apiProvider = new ApiProvider();
     }
@@ -23,6 +27,10 @@ class DailyActivityBarChart extends Component {
             this.setState({
                 loading: false,
                 dailyActivityData: response.content,
+                mininumYaxisKg : Math.min(...response.content.map((elt) => elt.kilogram)) - 1,
+                maximumYaxisKg : Math.max(...response.content.map((elt) => elt.kilogram)) + 2,
+                minimumYaxisKcal : Math.min(...response.content.map((elt) => elt.calories)) - 50,
+                maximumYaxisKcal : Math.max(...response.content.map((elt) => elt.calories)) + 50,
             });
         });
     }
@@ -63,23 +71,6 @@ class DailyActivityBarChart extends Component {
 
     // CHART 
     getBarChart = () => {
-        let kilogramsArray = [];
-        let caloriesArray = [];
-        let minValueYaxisKg = 0;
-        let maxValueYaxisKg = 0;
-        let minValueYaxisKcal = 0;
-        let maxValueYaxisKcal = 0;
-
-        if (this.state.dailyActivityData) {
-            kilogramsArray = this.state.dailyActivityData.map((elt) => elt.kilogram);
-            minValueYaxisKg = Math.min(...kilogramsArray) - 1;
-            maxValueYaxisKg = Math.max(...kilogramsArray) + 1;
-
-            caloriesArray = this.state.dailyActivityData.map((elt) => elt.calories);
-            minValueYaxisKcal = Math.min(...caloriesArray) - 50;
-            maxValueYaxisKcal = Math.max(...caloriesArray) + 50;
-        }
-
         return(
             <ResponsiveContainer width="100%" height="90%">
                 <BarChart
@@ -115,7 +106,7 @@ class DailyActivityBarChart extends Component {
                         axisLine={false}
                         tick={{ fontSize: 14, fill: '#74798c'}}
                         tickCount={8}
-                        domain={[minValueYaxisKg, maxValueYaxisKg]}
+                        domain={[this.state.mininumYaxisKg, this.state.maximumYaxisKg]}
                     />
                     <YAxis 
                         dataKey="calories" 
@@ -123,7 +114,7 @@ class DailyActivityBarChart extends Component {
                         orientation="right" 
                         stroke="#82ca9d" 
                         hide={true} 
-                        domain={[minValueYaxisKcal, maxValueYaxisKcal]}
+                        domain={[this.state.minimumYaxisKcal, this.state.maximumYaxisKcal]}
                     />
                     <Tooltip content={<CustomTooltipDailyActivity />} cursor={{ fill: "#e0e0e0" }} />
                     <Bar 

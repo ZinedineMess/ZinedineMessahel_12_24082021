@@ -1,6 +1,7 @@
 import Loader from '../../Loader/Loader';
 import './MacroTracker.css';
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class MacroTracker extends Component {
     state = {
@@ -8,6 +9,7 @@ class MacroTracker extends Component {
     }
 
     componentDidMount() {
+        // Fetching data from API and fill states
         fetch(this.props.data)
         .then(
             this.setState({
@@ -35,6 +37,13 @@ class MacroTracker extends Component {
             </div>
         )
     }
+}
+
+MacroTracker.propTypes = {
+    data : PropTypes.number,
+    icon : PropTypes.string.isRequired,
+    unitOfMeasure : PropTypes.string.isRequired,
+    name : PropTypes.string.isRequired,
 }
 
 export default MacroTracker;

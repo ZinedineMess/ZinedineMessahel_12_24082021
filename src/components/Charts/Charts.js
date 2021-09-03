@@ -39,7 +39,6 @@ class Charts extends Component {
     }
 
     render () {
-        // console.log(USER_MAIN_DATA[0].userInfos.firstName);
         return (
             <section className="charts">
                 <Welcome />

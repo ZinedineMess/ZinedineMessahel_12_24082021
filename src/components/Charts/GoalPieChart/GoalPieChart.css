@@ -30,3 +30,14 @@
     position: absolute;
     top: 1.5rem;
 }
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .goalPieChart {
+        height: 11rem;
+        width: 11rem;
+    }
+
+    .goalPieChartTitle {
+        display: none;
+    }
+}

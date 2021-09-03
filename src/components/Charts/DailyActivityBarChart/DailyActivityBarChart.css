@@ -47,3 +47,18 @@
     font-weight: 500;
     margin-left: 1.875rem;
 }
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .barChart {
+        height: 300px;
+    }
+
+    .barChartHeader {
+        width: 90%;
+    }
+
+    .barChartHeader, .barChartHeader>h2 {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+}

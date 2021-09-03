@@ -9,10 +9,6 @@
     width: 258px;
 }
 
-.macroTrackerContainerImgCalories {
-    background-color: #FBECED;
-}
-
 .macroTrackerContainerImgCalories,
 .macroTrackerContainerImgProtéines,
 .macroTrackerContainerImgGlucides,
@@ -23,6 +19,10 @@
     height: 60px;
     justify-content: center;
     width: 60px;
+}
+
+.macroTrackerContainerImgCalories {
+    background-color: #FBECED;
 }
 
 .macroTrackerContainerImgGlucides {
@@ -46,4 +46,27 @@
     color: #74798C;
     font-size: 14px;
     font-weight: 500;
+}
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .macroTracker {
+        height: 90px;
+        width: 180px;
+    }
+
+    .macroTrackerContainerImgCalories,
+    .macroTrackerContainerImgProtéines,
+    .macroTrackerContainerImgGlucides,
+    .macroTrackerContainerImgLipides {
+        height: 40px;
+        width: 40px;
+    }
+
+    .macroTrackerQuantity {
+        font-size: 0.8rem;
+    }
+
+    .macroTrackerType {
+        font-size: 0.7rem;
+    }
 }
