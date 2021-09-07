@@ -3,6 +3,7 @@ import CustomTooltipSessionsAverage from "../CustomTooltip/CustomTooltipSessions
 import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
 import Loader from '../../Loader/Loader';
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import './UserAverageLineChart.css';
 
 class UserAverageLineChart extends Component {
@@ -10,6 +11,7 @@ class UserAverageLineChart extends Component {
         super(props)
 
         this.state = {
+            id : this.props.id,
             userAverageData : [],
             loading: true,
         }
@@ -18,7 +20,7 @@ class UserAverageLineChart extends Component {
 
     componentDidMount = () => {
         this.apiProvider
-        .getUserAverageSessionData()
+        .getUserAverageSessionData(this.state.id)
         .then((response) => {
             this.setState({
                 loading: false,
@@ -42,7 +44,7 @@ class UserAverageLineChart extends Component {
         )
     }
 
-    // HEADER CHART 
+    // Build Header Line Chart 
     getHeaderLineChart = () => {
         return (
             <header>
@@ -55,7 +57,7 @@ class UserAverageLineChart extends Component {
         )
     }
 
-    // CHART 
+    // Build Line Chart 
     getLineChart = () => {
         return (
             <div className="lineChart">
@@ -109,6 +111,10 @@ class UserAverageLineChart extends Component {
             </div>
         )
     }
+}
+
+UserAverageLineChart.propTypes = {
+    id : PropTypes.string.isRequired,
 }
 
 export default UserAverageLineChart;

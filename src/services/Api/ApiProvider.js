@@ -7,10 +7,13 @@ class ApiProvider {
         this.baseUrl = 'http://localhost:3000';
     }
 
-    // MAIN DATA
-    async getMainData() {
+    /**
+     * Fetch USER_MAIN_DATA from API
+     * @return {Array.Object}
+     */
+    async getMainData(id) {
         const data = {};
-        let url = `${this.baseUrl}/user/${this.userId}`;
+        let url = `${this.baseUrl}/user/${id}`;
 
         await axios.get(url)
         .then(function (response) {
@@ -19,10 +22,13 @@ class ApiProvider {
         return data;
     }
 
-    // DAILYACTIVITY
-    async getUserDailyActivityData() {
+    /**
+     * Fetch USER_ACTIVITY from API
+     * @return {Array.Object}
+     */
+    async getUserDailyActivityData(id) {
         const data = {};
-        let url = `${this.baseUrl}/user/${this.userId}/activity`;
+        let url = `${this.baseUrl}/user/${id}/activity`;
 
         await axios.get(url)
         .then(function (response) {
@@ -31,10 +37,13 @@ class ApiProvider {
         return data;
     }
 
-    // AVERAGESESSIONS
-    async getUserAverageSessionData() {
+    /**
+     * Fetch USER_AVERAGE_SESSIONS from API
+     * @return {Array.Object}
+     */
+    async getUserAverageSessionData(id) {
         const data = {};
-        let url = `${this.baseUrl}/user/${this.userId}/average-sessions`;
+        let url = `${this.baseUrl}/user/${id}/average-sessions`;
 
         await axios
             .get(url)
@@ -44,10 +53,13 @@ class ApiProvider {
         return data;
     }
 
-    // PERFORMANCE
-    async getUserPerformanceData() {
+    /**
+     * Fetch USER_PERFORMANCE from API
+     * @return {Array.Object}
+     */
+    async getUserPerformanceData(id) {
         const data = {};
-        let url = `${this.baseUrl}/user/${this.userId}/performance`;
+        let url = `${this.baseUrl}/user/${id}/performance`;
 
         await axios
             .get(url)

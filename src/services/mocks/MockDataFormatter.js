@@ -1,4 +1,9 @@
 class MockDataFormatter {
+    /**
+     * Retrieve dataMocked USER_MAIN_DATA and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getMainDataFormat(dataMock) {
         return {
             firstName: dataMock.data.userInfos.firstName,
@@ -10,7 +15,10 @@ class MockDataFormatter {
         }
     }
 
-    // DAILYACTIVITY
+    /**
+     * Build an array with the dates of the 7 previous days.
+     * @return {Object} - Formatted default data for the component
+     */
     static getDailyActivityDataFormatDefault() {
         const data = [];
         let date = new Date(Date.now());
@@ -29,6 +37,11 @@ class MockDataFormatter {
         return data;
     }
 
+    /**
+     * Retrieve dataMocked USER_ACTIVITY and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getDailyActivityDataFormat(dataMock) {
         if (dataMock) {
             const data = [];
@@ -48,7 +61,11 @@ class MockDataFormatter {
         this.getDailyActivityDataFormatDefault();
     }
 
-    // AVERAGESESSIONS
+    /**
+     * Retrieve dataMocked USER_AVERAGE_SESSIONS and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getUserAverageDataFormat(dataMock) {
         const sessionsData = []
         const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
@@ -63,7 +80,11 @@ class MockDataFormatter {
         return sessionsData;
     }
 
-    // PERFORMANCE
+    /**
+     * Retrieve dataMocked USER_PERFORMANCE and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getPerformanceAverageDataFormat(dataMock) {
         let performanceAverageData = [];
 

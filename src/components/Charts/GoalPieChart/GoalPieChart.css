@@ -2,7 +2,7 @@
     align-items: center;
     background: #FBFBFB;
     border-radius: .3125rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0212249);
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.0212249);
     display: flex;
     height: 16.4375rem;
     justify-content: center;

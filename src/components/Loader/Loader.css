@@ -1,12 +1,12 @@
 .loader {
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
-    border: 10px solid #20253A;
+    border: .625rem solid #20253A;
     border-radius: 50%;
-    border-top: 10px solid #e60000;
-    height: 50px;
-    margin: 40px auto 20px;
-    width: 50px;
+    border-top: .625rem solid #e60000;
+    height: 3.125rem;
+    margin: 2.5rem auto 1.25rem;
+    width: 3.125rem;
 }
 
 .loader p {

@@ -1,6 +1,7 @@
 import ApiProvider from '../../../services/Api/ApiProvider';
 import Loader from '../../Loader/Loader';
 import './PerformanceAverageRadarChart.css';
+import PropTypes from 'prop-types';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer} from 'recharts';
 import React, { Component } from "react";
 
@@ -9,6 +10,7 @@ class PerformanceAverageRadarChart extends Component {
         super(props)
 
         this.state = {
+            id : this.props.id,
             performanceAverageData : [],
             loading: true,
         }
@@ -17,7 +19,7 @@ class PerformanceAverageRadarChart extends Component {
 
     componentDidMount = () => {
         this.apiProvider
-        .getUserPerformanceData()
+        .getUserPerformanceData(this.state.id)
         .then((response) => {
             this.setState({
                 loading: false,
@@ -40,6 +42,7 @@ class PerformanceAverageRadarChart extends Component {
         )
     }
 
+    // Build Radar Chart
     getPerformanceRadarChart = () => {
         return (
             <ResponsiveContainer width="100%" height="100%">
@@ -63,6 +66,10 @@ class PerformanceAverageRadarChart extends Component {
                 </ResponsiveContainer>
         )
     }
+}
+
+PerformanceAverageRadarChart.propTypes = {
+    id : PropTypes.string.isRequired,
 }
 
 export default PerformanceAverageRadarChart;

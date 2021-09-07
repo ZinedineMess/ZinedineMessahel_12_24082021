@@ -3,6 +3,7 @@ import {BarChart, Bar, CartesianGrid, Tooltip, ResponsiveContainer, XAxis, YAxis
 import CustomTooltipDailyActivity from '../CustomTooltip/CustomTooltipDailyActivity/CustomTooltipDailyActivity';
 import './DailyActivityBarChart.css';
 import Loader from '../../Loader/Loader';
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 class DailyActivityBarChart extends Component {
@@ -10,27 +11,28 @@ class DailyActivityBarChart extends Component {
         super(props)
 
         this.state = {
+            id : this.props.id,
             dailyActivityData : [],
-            loading: true,
             mininumYaxisKg : 0,
             maximumYaxisKg : 0,
             minimumYaxisKcal : 0,
             maximumYaxisKcal : 0,
+            loading: true,
         }
         this.apiProvider = new ApiProvider();
     }
 
     componentDidMount = () => {
         this.apiProvider
-        .getUserDailyActivityData()
+        .getUserDailyActivityData(this.state.id)
         .then((response) => {
             this.setState({
-                loading: false,
                 dailyActivityData: response.content,
                 mininumYaxisKg : Math.min(...response.content.map((elt) => elt.kilogram)) - 1,
                 maximumYaxisKg : Math.max(...response.content.map((elt) => elt.kilogram)) + 2,
                 minimumYaxisKcal : Math.min(...response.content.map((elt) => elt.calories)) - 50,
                 maximumYaxisKcal : Math.max(...response.content.map((elt) => elt.calories)) + 50,
+                loading: false,
             });
         });
     }
@@ -50,7 +52,7 @@ class DailyActivityBarChart extends Component {
         )
     }
 
-    // HEADER CHART 
+    // Build Header Bar Chart
     getHeaderBarChart = () => {
         return (
             <header className="barChartHeader">
@@ -69,7 +71,7 @@ class DailyActivityBarChart extends Component {
         )
     }
 
-    // CHART 
+    // Build Bar Chart
     getBarChart = () => {
         return(
             <ResponsiveContainer width="100%" height="90%">
@@ -133,6 +135,10 @@ class DailyActivityBarChart extends Component {
             </ResponsiveContainer>
         )
     }
+}
+
+DailyActivityBarChart.propTypes = {
+    id : PropTypes.string.isRequired,
 }
 
 export default DailyActivityBarChart;

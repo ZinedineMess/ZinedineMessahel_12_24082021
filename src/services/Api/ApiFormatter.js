@@ -1,16 +1,23 @@
 class ApiFormatter {
+    /**
+     * Retrieve dataAPI USER_MAIN_DATA and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getMainDataFormat(dataApi) {
+        let fetchedData = dataApi.data.data;
+
         return {
-            firstName: dataApi.data.data.userInfos.firstName,
-            macroTracker: dataApi.data.data.keyData,
-            userScore: [
-                { name: "completed", value: dataApi.data.data.todayScore || dataApi.data.data.score, fillColor: "#e60000" },
-                { name: "not-completed", value: 1 - dataApi.data.data.todayScore || dataApi.data.data.score, fillColor: "transparent" },
-            ]
+            firstName: fetchedData.userInfos.firstName,
+            macroTracker: fetchedData.keyData,
+            userScore: fetchedData.todayScore || fetchedData.score,
         }
     }
 
-    // DAILYACTIVITY
+    /**
+     * Build an array with the dates of the 7 previous days.
+     * @return {Object} - Formatted default data for the component
+     */
     static getDailyActivityDataFormatDefault() {
         const data = [];
         let date = new Date(Date.now());
@@ -29,11 +36,17 @@ class ApiFormatter {
         return data;
     }
 
+    /**
+     * Retrieve dataAPI USER_ACTIVITY and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getDailyActivityDataFormat(dataApi) {
         if (dataApi) {
+            let fetchedData = dataApi.data.data;
             const data = [];
     
-            for (let item of dataApi.data.data.sessions) {
+            for (let item of fetchedData.sessions) {
                 // eslint-disable-next-line no-unused-vars
                 const [yyyy, mm, dd] = item.day.split("-");
                 
@@ -45,15 +58,21 @@ class ApiFormatter {
                 }
                 return data;
             }
+            
         this.getDailyActivityDataFormatDefault();
     }
 
-    // AVERAGESESSIONS
+    /**
+     * Retrieve dataAPI USER_AVERAGE_SESSIONS and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getUserAverageDataFormat(dataApi) {
-        const sessionsData = []
-        const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+        let fetchedData = dataApi.data.data;
+        const sessionsData = [];
+        const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
-        dataApi.data.data.sessions.map((session) => {
+        fetchedData.sessions.map((session) => {
             return sessionsData.push({
                 day: days[session.day - 1],
                 sessionLength: session.sessionLength,
@@ -63,11 +82,16 @@ class ApiFormatter {
         return sessionsData;
     }
 
-    // PERFORMANCE
+    /**
+     * Retrieve dataAPI USER_PERFORMANCE and return the data formatted, ready to be used for the component
+     * @param {Object} dataApi - Data from the API SportSee
+     * @return {Object} - Formatted data for the component
+     */
     static getPerformanceAverageDataFormat(dataApi) {
+        let fetchedData = dataApi.data.data.data;
         let performanceAverageData = [];
 
-        dataApi.data.data.data.map((data, index) => {
+        fetchedData.map((data, index) => {
             return performanceAverageData.push({
                 subject:
                 dataApi.data.data.kind[index + 1].charAt(0).toUpperCase() +

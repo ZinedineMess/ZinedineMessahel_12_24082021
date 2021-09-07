@@ -1,5 +1,6 @@
 import ApiProvider from '../../services/Api/ApiProvider';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // ASSETS 
 import calories from '../../assets/macroTracker/calories.png';
 import protein from '../../assets/macroTracker/protein.png';
@@ -12,17 +13,17 @@ import UserAverageLineChart from './UserAverageLineChart/UserAverageLineChart';
 import PerformanceAverageRadarChart from './PerformanceAverageRadarChart/PerformanceAverageRadarChart';
 import GoalPieChart from './GoalPieChart/GoalPieChart';
 import MacroTracker from './MacroTracker/MacroTracker';
-
-// import { USER_ACTIVITY } from '../../services/mocks/mockedData';
-// import { USER_AVERAGE_SESSIONS } from '../../services/mocks/mockedData';
-// import { USER_MAIN_DATA } from '../../services/mocks/mockedData';
-// import { USER_PERFORMANCE } from '../../services/mocks/mockedData';
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 class Charts extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            id : this.props.id,
+            welcomeData : null,
+            goalScoreData : [],
+            goalScorePercentage : 0,
             macroTrackerData : [],
         }
         this.apiProvider = new ApiProvider();
@@ -30,35 +31,57 @@ class Charts extends Component {
 
     componentDidMount = () => {
         this.apiProvider
-        .getMainData()
+        .getMainData(this.state.id)
         .then((response) => {
             this.setState({
+                welcomeData: response.content.firstName,
+                goalScoreData: [
+                    { name: "completed", value: response.content.userScore, fillColor: "#e60000" },
+                    { name: "not-completed", value: 1 - response.content.userScore, fillColor: "transparent" },
+                ],
+                goalScorePercentage : response.content.userScore * 100,
                 macroTrackerData: response.content.macroTracker,
+                errorModal: false,
             });
-        });
+        })
+        .catch((error) => {
+            this.setState({
+                errorModal : true,
+                message : error.message,
+            })
+        })
     }
 
     render () {
-        return (
+        return this.state.errorModal ? 
+        (
+            <ErrorModal message={this.state.message} />
+        )
+        : (
             <section className="charts">
-                <Welcome />
-                <DailyActivityBarChart />
+                <Welcome welcomeData={this.state.welcomeData} />
+                <DailyActivityBarChart id={this.state.id} />
                 {this.getHorizontalSectionCharts()}
                 {this.getMacroTrackerSideSection()}
             </section>
         )
     }
 
+    // Build the main Section Charts with UserAverageChart, PerformanceAverageChart and GoalScoreChart
     getHorizontalSectionCharts = () => {
         return (
             <section className="chartsHorizontal">
-                <UserAverageLineChart />
-                <PerformanceAverageRadarChart />
-                <GoalPieChart />
+                <UserAverageLineChart id={this.state.id} />
+                <PerformanceAverageRadarChart id={this.state.id} />
+                <GoalPieChart 
+                    goalScoreData={this.state.goalScoreData} 
+                    goalScorePercentage={this.state.goalScorePercentage} 
+                />
             </section>
         )
     }
 
+    // Build the side section that contains the MacroTrackers
     getMacroTrackerSideSection = () => {
         return (
             <section className="chartsVertical">
@@ -93,6 +116,10 @@ class Charts extends Component {
             </section>
         )
     }
+}
+
+Charts.propTypes = {
+    id : PropTypes.string.isRequired,
 }
 
 export default Charts;

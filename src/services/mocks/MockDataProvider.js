@@ -6,7 +6,10 @@ import { USER_MAIN_DATA } from './mockedData';
 import { USER_PERFORMANCE } from './mockedData';
 
 class MockDataProvider {
-    // MAIN DATA
+    /**
+     * Fetch USER_MAIN_DATA from MockedData
+     * @return  {Array.Object}
+     */
     async getMainData() {
         const data = {};
 
@@ -17,7 +20,10 @@ class MockDataProvider {
         return data;
     }
 
-    // DAILYACTIVITY
+    /**
+     * Fetch USER_ACTIVITY from MockedData
+     * @return  {Array.Object}
+     */
     async getUserDailyActivityData() {
         const data = {};
 
@@ -28,7 +34,10 @@ class MockDataProvider {
         return data;
     }
 
-    // AVERAGESESSIONS
+    /**
+     * Fetch USER_AVERAGE_SESSIONS from MockedData
+     * @return  {Array.Object}
+     */
     async getUserAverageSessionData() {
         const data = {};
 
@@ -40,7 +49,10 @@ class MockDataProvider {
         return data;
     }
 
-    // PERFORMANCE
+    /**
+     * Fetch USER_PERFORMANCE from MockedData
+     * @return  {Array.Object}
+     */
     async getUserPerformanceData() {
         const data = {};
 

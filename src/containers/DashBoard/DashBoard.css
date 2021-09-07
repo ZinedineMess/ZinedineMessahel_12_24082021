@@ -2,7 +2,7 @@
     left: 15%;
     position: absolute;
     top: 9rem;
-    width: 835px;
+    width: 52.1875rem;
 }
 
 .chartsHorizontal {
@@ -14,7 +14,7 @@
 .chartsVertical {
     display: flex;
     flex-direction: column;
-    height: 660px;
+    height: 41.25rem;
     justify-content: space-between;
     left: 55rem;
     position: absolute;
@@ -22,7 +22,7 @@
 }
 
 main {
-    height: 1024px;
+    height: 64rem;
     width: 100%;
 }
 
@@ -30,11 +30,11 @@ main {
     .charts {
         left: 16%;
         top: 17%;
-        width: 620px;
+        width: 38.75rem;
     }
-    
+
     .chartsVertical {
-        height: 555px;
+        height: 34.6875rem;
         left: 41rem;
         top: 17%;
     }

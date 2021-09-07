@@ -1,39 +1,11 @@
-import ApiProvider from "../../../services/Api/ApiProvider";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import './GoalPieChart.css';
-import Loader from '../../Loader/Loader';
+import PropTypes from 'prop-types';
 import React, { Component } from "react";
 
 class GoalPieChart extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            goalScoreData : [],
-            loading: true,
-        }
-        this.apiProvider = new ApiProvider();
-    }
-
-    componentDidMount = () => {
-        this.apiProvider
-        .getMainData()
-        .then((response) => {
-            this.setState({
-                goalScoreData: response.content.userScore,
-                loading: false,
-            });
-        });
-    }
-
     render() {
-        return this.state.loading ? 
-        (
-            <article className="goalPieChart">
-                <Loader />
-            </article>
-        )
-        : (
+        return (
             <article className="goalPieChart">
                 <h2 className="goalPieChartTitle">Score</h2>
                 {this.getPieChart()}
@@ -42,19 +14,20 @@ class GoalPieChart extends Component {
         )
     }
 
+    // Build Pie Chart
     getPieChart = () => {
         return (
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
-                        data={this.state.goalScoreData}
+                        data={this.props.goalScoreData}
                         dataKey="value"
                         innerRadius={70}
                         outerRadius={80}
                         startAngle={90}
                         endAngle={450}
                     >
-                        {this.state.goalScoreData.map((entry, index) => (
+                        {this.props.goalScoreData.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
                                 fill={entry.fillColor}
@@ -67,10 +40,11 @@ class GoalPieChart extends Component {
         )
     }
 
+    // Build Pie Chart Infos
     getPieChartInfos = () => {
         return (
             <div className="goalPieChartInfos">
-                <span className="goalPieChartScoreValue">{`${100 * this.state.goalScoreData[0].value}%`}</span>
+                <span className="goalPieChartScoreValue">{this.props.goalScorePercentage}</span>
                 <br />
                 de votre
                 <br />
@@ -78,6 +52,11 @@ class GoalPieChart extends Component {
             </div>
         )
     }
+}
+
+GoalPieChart.propTypes = {
+    goalScoreData : PropTypes.array.isRequired,
+    goalScorePercentage : PropTypes.number.isRequired,
 }
 
 export default GoalPieChart;
