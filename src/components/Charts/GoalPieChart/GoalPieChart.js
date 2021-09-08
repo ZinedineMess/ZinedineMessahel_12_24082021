@@ -44,7 +44,7 @@ class GoalPieChart extends Component {
     getPieChartInfos = () => {
         return (
             <div className="goalPieChartInfos">
-                <span className="goalPieChartScoreValue">{this.props.goalScorePercentage}</span>
+                <span className="goalPieChartScoreValue">{this.props.goalScorePercentage}%</span>
                 <br />
                 de votre
                 <br />
