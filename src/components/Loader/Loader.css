@@ -1,0 +1,35 @@
+.loader {
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border: .625rem solid #20253A;
+    border-radius: 50%;
+    border-top: .625rem solid #e60000;
+    height: 3.125rem;
+    margin: 2.5rem auto 1.25rem;
+    width: 3.125rem;
+}
+
+.loader p {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

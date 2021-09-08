@@ -1,0 +1,15 @@
+.tooltipLine {
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 1rem;
+}
+
+.tooltipLine.black {
+    background-color: #000;
+}
+
+.tooltipLine.red {
+    background-color: #e60000;
+}

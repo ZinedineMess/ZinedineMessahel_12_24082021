@@ -1,0 +1,44 @@
+.error404Background {
+    background-color: rgba(26, 39, 156, 0.4);
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.error404Body {
+    margin: .9375rem auto;
+    padding: .9375rem 8%;
+}
+
+.error404Content {
+    animation-duration: var(--modal-duration);
+    animation-name: modalopen;
+    background: #232323;
+    border-radius: .625rem;
+    color: #fff;
+    margin: 5% auto;
+    max-width: 31.25rem;
+    overflow: hidden;
+    padding-top: .625rem;
+    position: relative;
+    top: 15%;
+    width: 100%;
+}
+
+.error404Img {
+    border-radius: .625rem;
+    width: 100%;
+}
+
+.error404Link {
+    color: #e60000;
+    text-decoration: none;
+}
+
+.error404Logo {
+    margin: 2rem;
+}

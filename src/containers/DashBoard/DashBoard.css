@@ -1,0 +1,41 @@
+.charts {
+    left: 15%;
+    position: absolute;
+    top: 9rem;
+    width: 52.1875rem;
+}
+
+.chartsHorizontal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.chartsVertical {
+    display: flex;
+    flex-direction: column;
+    height: 41.25rem;
+    justify-content: space-between;
+    left: 55rem;
+    position: absolute;
+    top: 15%;
+}
+
+main {
+    height: 64rem;
+    width: 100%;
+}
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .charts {
+        left: 16%;
+        top: 17%;
+        width: 38.75rem;
+    }
+
+    .chartsVertical {
+        height: 34.6875rem;
+        left: 41rem;
+        top: 17%;
+    }
+}

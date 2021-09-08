@@ -1,0 +1,39 @@
+.errorModalBackground {
+    background-color: rgba(26, 39, 156, 0.4);
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.errorModalBody {
+    margin: .9375rem auto;
+    padding: .9375rem 8%;
+}
+
+.errorModalBody>h3 {
+    font-size: 1.5rem;
+}
+
+.errorModalBody>p {
+    color: #e60000;
+    text-align: center;
+}
+
+.errorModalContent {
+    animation-duration: var(--modal-duration);
+    animation-name: modalopen;
+    background: #232323;
+    border-radius: .625rem;
+    color: #fff;
+    margin: 5% auto;
+    max-width: 31.25rem;
+    overflow: hidden;
+    padding-top: .625rem;
+    position: relative;
+    top: 25%;
+    width: 100%;
+}

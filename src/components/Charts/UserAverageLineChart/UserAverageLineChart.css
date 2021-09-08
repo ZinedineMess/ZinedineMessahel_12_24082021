@@ -1,0 +1,35 @@
+.lineChart {
+    background-color: #e60000;
+    border-radius: .3125rem;
+    height: 16.4375rem;
+    width: 16.125rem;
+}
+
+.sessionsLineChart {
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.sessionsLineChartTitle {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 500;
+    left: 2rem;
+    margin: 0;
+    position: absolute;
+    top: 1.5rem;
+}
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .lineChart {
+        height: 11rem;
+        width: 11rem;
+    }
+
+    .sessionsLineChartTitle {
+        font-size: .8rem;
+        left: 1.5rem;
+        top: 1rem;
+    }
+}

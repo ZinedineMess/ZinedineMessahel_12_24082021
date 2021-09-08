@@ -1,0 +1,10 @@
+.borderLogoSideBar {
+    align-items: center;
+    background: #FFF;
+    border-radius: .375rem;
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 4rem;
+}
