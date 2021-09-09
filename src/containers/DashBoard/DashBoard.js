@@ -1,4 +1,4 @@
-import Charts from '../../components/Charts/Charts';
+import Charts from '../Charts/Charts';
 import './DashBoard.css';
 import Header from '../../components/Header/Header';
 import PropTypes from 'prop-types';

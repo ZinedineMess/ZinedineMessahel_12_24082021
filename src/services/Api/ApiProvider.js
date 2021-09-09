@@ -3,7 +3,6 @@ import axios from 'axios';
 
 class ApiProvider {
     constructor() {
-        this.userId = 12;
         this.baseUrl = 'http://localhost:3000';
     }
 
