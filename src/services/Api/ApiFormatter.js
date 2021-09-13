@@ -33,7 +33,14 @@ class ApiFormatter {
             date.setDate(date.getDate() - 1);
         }
         data.reverse();
-        return data;
+
+        return {
+            data: data,
+            mininumYaxisKg : Math.min(...data.map((elt) => elt.kilogram)) - 1,
+            maximumYaxisKg : Math.max(...data.map((elt) => elt.kilogram)) + 2,
+            minimumYaxisKcal : Math.min(...data.map((elt) => elt.calories)) - 50,
+            maximumYaxisKcal : Math.max(...data.map((elt) => elt.calories)) + 50,
+        }
     }
 
     /**
@@ -56,9 +63,15 @@ class ApiFormatter {
                     calories: item.calories,
                     });
                 }
-                return data;
+
+                return {
+                    data: data,
+                    mininumYaxisKg : Math.min(...data.map((elt) => elt.kilogram)) - 1,
+                    maximumYaxisKg : Math.max(...data.map((elt) => elt.kilogram)) + 2,
+                    minimumYaxisKcal : Math.min(...data.map((elt) => elt.calories)) - 50,
+                    maximumYaxisKcal : Math.max(...data.map((elt) => elt.calories)) + 50,
+                }
             }
-            
         this.getDailyActivityDataFormatDefault();
     }
 

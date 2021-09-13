@@ -3,7 +3,6 @@ import axios from 'axios';
 
 class ApiProvider {
     constructor() {
-        this.userId = 12;
         this.baseUrl = 'http://localhost:3000';
     }
 
@@ -12,12 +11,12 @@ class ApiProvider {
      * @return {Array.Object}
      */
     async getMainData(id) {
-        const data = {};
+        let data = {};
         let url = `${this.baseUrl}/user/${id}`;
 
         await axios.get(url)
         .then(function (response) {
-            data.content = ApiFormatter.getMainDataFormat(response);
+            data = ApiFormatter.getMainDataFormat(response);
         })
         return data;
     }
@@ -27,12 +26,12 @@ class ApiProvider {
      * @return {Array.Object}
      */
     async getUserDailyActivityData(id) {
-        const data = {};
+        let data = {};
         let url = `${this.baseUrl}/user/${id}/activity`;
 
         await axios.get(url)
         .then(function (response) {
-            data.content = ApiFormatter.getDailyActivityDataFormat(response);
+            data = ApiFormatter.getDailyActivityDataFormat(response);
         })
         return data;
     }
@@ -42,13 +41,13 @@ class ApiProvider {
      * @return {Array.Object}
      */
     async getUserAverageSessionData(id) {
-        const data = {};
+        let data = {};
         let url = `${this.baseUrl}/user/${id}/average-sessions`;
 
         await axios
             .get(url)
             .then(function (response) {
-                data.content = ApiFormatter.getUserAverageDataFormat(response);
+                data = ApiFormatter.getUserAverageDataFormat(response);
             })
         return data;
     }
@@ -58,13 +57,13 @@ class ApiProvider {
      * @return {Array.Object}
      */
     async getUserPerformanceData(id) {
-        const data = {};
+        let data = {};
         let url = `${this.baseUrl}/user/${id}/performance`;
 
         await axios
             .get(url)
             .then(function (response) {
-                data.content = ApiFormatter.getPerformanceAverageDataFormat(response);
+                data = ApiFormatter.getPerformanceAverageDataFormat(response);
             })
         return data;
     }

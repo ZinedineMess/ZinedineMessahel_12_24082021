@@ -1,71 +1,18 @@
-import ApiProvider from "../../../services/Api/ApiProvider";
-import CustomTooltipSessionsAverage from "../CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
+import CustomTooltipSessionsAverage from "components/Charts/CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
 import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
-import Loader from '../../Loader/Loader';
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import './UserAverageLineChart.css';
 
-class UserAverageLineChart extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            id : this.props.id,
-            userAverageData : [],
-            loading: true,
-        }
-        this.apiProvider = new ApiProvider();
-    }
-
-    componentDidMount = () => {
-        this.apiProvider
-        .getUserAverageSessionData(this.state.id)
-        .then((response) => {
-            this.setState({
-                loading: false,
-                userAverageData: response.content,
-            });
-        });
-    }
-
-    render() {
-        return this.state.loading ? 
-        (
-            <article className="sessionsLineChart">
-                <Loader />
-            </article>
-        )
-        : (
-            <article className="sessionsLineChart">
-                {this.getHeaderLineChart()}
-                {this.getLineChart()}
-            </article>
-        )
-    }
-
-    // Build Header Line Chart 
-    getHeaderLineChart = () => {
-        return (
-            <header>
-                <h2 className="sessionsLineChartTitle">
-                    Durée moyenne des
-                        <br />
-                    sessions
-                </h2>
-            </header>
-        )
-    }
-
+class ChartLine extends Component {
     // Build Line Chart 
-    getLineChart = () => {
+    render() {
         return (
             <div className="lineChart">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         width={500}
                         height={200}
-                        data={this.state.userAverageData}
+                        data={this.props.userAverageData}
                         syncId="anyId"
                         outerRadius="75%"
                         margin={{ top: 0, right: 12, bottom: 24, left: 12 }}
@@ -113,8 +60,8 @@ class UserAverageLineChart extends Component {
     }
 }
 
-UserAverageLineChart.propTypes = {
-    id : PropTypes.string.isRequired,
+ChartLine.propTypes = {
+    userAverageData : PropTypes.array.isRequired,
 }
 
-export default UserAverageLineChart;
+export default ChartLine;

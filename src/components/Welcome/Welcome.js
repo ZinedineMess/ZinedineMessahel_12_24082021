@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import './Welcome.css';
+import 'components/Welcome/Welcome.css';
 
 class Welcome extends Component {
     render() {

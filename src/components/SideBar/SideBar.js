@@ -1,5 +1,5 @@
-import './SideBar.css';
-import SideBarNav from '../SideBarNav/SideBarNav';
+import 'components/SideBar/SideBar.css';
+import SideBarNav from 'components/SideBarNav/SideBarNav';
 import React, {Component} from 'react';
 
 class SideBar extends Component {

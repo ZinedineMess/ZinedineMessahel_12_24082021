@@ -1,19 +1,19 @@
-import ApiProvider from '../../services/Api/ApiProvider';
+import ApiProvider from 'services/Api/ApiProvider';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // ASSETS 
-import calories from '../../assets/macroTracker/calories.png';
-import protein from '../../assets/macroTracker/protein.png';
-import carbohydrates from '../../assets/macroTracker/carbohydrates.png';
-import lipids from '../../assets/macroTracker/lipids.png';
+import calories from 'assets/macroTracker/calories.png';
+import protein from 'assets/macroTracker/protein.png';
+import carbohydrates from 'assets/macroTracker/carbohydrates.png';
+import lipids from 'assets/macroTracker/lipids.png';
 // CHARTS
-import Welcome from '../Welcome/Welcome';
-import DailyActivityBarChart from './DailyActivityBarChart/DailyActivityBarChart';
-import UserAverageLineChart from './UserAverageLineChart/UserAverageLineChart';
-import PerformanceAverageRadarChart from './PerformanceAverageRadarChart/PerformanceAverageRadarChart';
-import GoalPieChart from './GoalPieChart/GoalPieChart';
-import MacroTracker from './MacroTracker/MacroTracker';
-import ErrorModal from '../ErrorModal/ErrorModal';
+import Welcome from 'components/Welcome/Welcome';
+import DailyActivity from 'containers/DailyActivity/DailyActivity';
+import SessionsAverage from 'containers/SessionsAverage/SessionsAverage';
+import PerformanceAverage from 'containers/PerformanceAverage/PerformanceAverage';
+import GoalScore from 'containers/GoalScore/GoalScore';
+import MacroTracker from 'components/MacroTracker/MacroTracker';
+import ErrorModal from 'components/ErrorModal/ErrorModal';
 
 class Charts extends Component {
     constructor(props) {
@@ -34,13 +34,13 @@ class Charts extends Component {
         .getMainData(this.state.id)
         .then((response) => {
             this.setState({
-                welcomeData: response.content.firstName,
+                welcomeData: response.firstName,
                 goalScoreData: [
-                    { name: "completed", value: response.content.userScore, fillColor: "#e60000" },
-                    { name: "not-completed", value: 1 - response.content.userScore, fillColor: "transparent" },
+                    { name: "completed", value: response.userScore, fillColor: "#e60000" },
+                    { name: "not-completed", value: 1 - response.userScore, fillColor: "transparent" },
                 ],
-                goalScorePercentage : response.content.userScore * 100,
-                macroTrackerData: response.content.macroTracker,
+                goalScorePercentage : response.userScore * 100,
+                macroTrackerData: response.macroTracker,
                 errorModal: false,
             });
         })
@@ -60,7 +60,7 @@ class Charts extends Component {
         : (
             <section className="charts">
                 <Welcome welcomeData={this.state.welcomeData} />
-                <DailyActivityBarChart id={this.state.id} />
+                <DailyActivity id={this.state.id} />
                 {this.getHorizontalSectionCharts()}
                 {this.getMacroTrackerSideSection()}
             </section>
@@ -71,9 +71,9 @@ class Charts extends Component {
     getHorizontalSectionCharts = () => {
         return (
             <section className="chartsHorizontal">
-                <UserAverageLineChart id={this.state.id} />
-                <PerformanceAverageRadarChart id={this.state.id} />
-                <GoalPieChart 
+                <SessionsAverage id={this.state.id} />
+                <PerformanceAverage id={this.state.id} />
+                <GoalScore 
                     goalScoreData={this.state.goalScoreData} 
                     goalScorePercentage={this.state.goalScorePercentage} 
                 />

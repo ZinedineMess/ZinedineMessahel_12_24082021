@@ -1,21 +1,10 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
-import './GoalPieChart.css';
 import PropTypes from 'prop-types';
 import React, { Component } from "react";
 
-class GoalPieChart extends Component {
-    render() {
-        return (
-            <article className="goalPieChart">
-                <h2 className="goalPieChartTitle">Score</h2>
-                {this.getPieChart()}
-                {this.getPieChartInfos()}
-            </article>
-        )
-    }
-
+class ChartPie extends Component {
     // Build Pie Chart
-    getPieChart = () => {
+    render() {
         return (
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -39,24 +28,10 @@ class GoalPieChart extends Component {
             </ResponsiveContainer>
         )
     }
-
-    // Build Pie Chart Infos
-    getPieChartInfos = () => {
-        return (
-            <div className="goalPieChartInfos">
-                <span className="goalPieChartScoreValue">{this.props.goalScorePercentage}%</span>
-                <br />
-                de votre
-                <br />
-                objectif
-            </div>
-        )
-    }
 }
 
-GoalPieChart.propTypes = {
+ChartPie.propTypes = {
     goalScoreData : PropTypes.array.isRequired,
-    goalScorePercentage : PropTypes.number.isRequired,
 }
 
-export default GoalPieChart;
+export default ChartPie;

@@ -1,7 +1,7 @@
-import './ErrorModal.css';
+import 'components/ErrorModal/ErrorModal.css';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Loader from '../Loader/Loader';
+import Loader from 'components/Loader/Loader';
 
 class ErrorModal extends Component {
     render() {
