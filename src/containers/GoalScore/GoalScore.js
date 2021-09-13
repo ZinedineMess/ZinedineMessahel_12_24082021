@@ -1,5 +1,5 @@
-import ChartPie from '../../components/Charts/ChartPie/ChartPie';
-import './GoalScore.css';
+import ChartPie from 'components/Charts/ChartPie/ChartPie';
+import 'containers/GoalScore/GoalScore.css';
 import PropTypes from 'prop-types';
 import React, { Component } from "react";
 

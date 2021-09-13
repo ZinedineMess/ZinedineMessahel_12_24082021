@@ -1,7 +1,7 @@
-import ApiProvider from '../../services/Api/ApiProvider';
-import ChartBar from '../../components/Charts/ChartBar/ChartBar';
-import './DailyActivity.css';
-import Loader from '../../components/Loader/Loader';
+import ApiProvider from 'services/Api/ApiProvider';
+import ChartBar from 'components/Charts/ChartBar/ChartBar';
+import 'containers/DailyActivity/DailyActivity.css';
+import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
@@ -25,11 +25,11 @@ class DailyActivity extends Component {
         .getUserDailyActivityData(this.props.id)
         .then((response) => {
             this.setState({
-                dailyActivityData: response.content.data,
-                mininumYaxisKg : response.content.mininumYaxisKg,
-                maximumYaxisKg : response.content.maximumYaxisKg,
-                minimumYaxisKcal : response.content.minimumYaxisKcal,
-                maximumYaxisKcal : response.content.maximumYaxisKcal,
+                dailyActivityData: response.data,
+                mininumYaxisKg : response.mininumYaxisKg,
+                maximumYaxisKg : response.maximumYaxisKg,
+                minimumYaxisKcal : response.minimumYaxisKcal,
+                maximumYaxisKcal : response.maximumYaxisKcal,
                 loading: false,
             });
         });

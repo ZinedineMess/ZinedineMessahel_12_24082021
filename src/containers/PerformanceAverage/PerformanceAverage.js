@@ -1,7 +1,7 @@
-import ApiProvider from '../../services/Api/ApiProvider';
-import ChartRadar from '../../components/Charts/ChartRadar/ChartRadar';
-import Loader from '../../components/Loader/Loader';
-import './PerformanceAverage.css';
+import ApiProvider from 'services/Api/ApiProvider';
+import ChartRadar from 'components/Charts/ChartRadar/ChartRadar';
+import Loader from 'components/Loader/Loader';
+import 'containers/PerformanceAverage/PerformanceAverage.css';
 import PropTypes from 'prop-types';
 import React, { Component } from "react";
 
@@ -23,21 +23,18 @@ class PerformanceAverage extends Component {
         .then((response) => {
             this.setState({
                 loading: false,
-                performanceAverageData: response.content,
+                performanceAverageData: response,
             });
         });
     }
 
     render() {
-        return this.state.loading ? 
-        (
+        return (
             <article className="performanceRadarChart">
-                <Loader />
-            </article>
-        ) 
-        : (
-            <article className="performanceRadarChart">
-                <ChartRadar performanceAverageData={this.state.performanceAverageData} />
+                {this.state.loading 
+                ? <Loader />
+                : <ChartRadar performanceAverageData={this.state.performanceAverageData} />
+                }
             </article>
         )
     }

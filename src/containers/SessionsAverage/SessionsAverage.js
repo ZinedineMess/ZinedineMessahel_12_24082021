@@ -1,9 +1,9 @@
-import ApiProvider from "../../services/Api/ApiProvider";
-import ChartLine from "../../components/Charts/ChartLine/ChartLine";
-import Loader from '../../components/Loader/Loader';
+import ApiProvider from "services/Api/ApiProvider";
+import ChartLine from "components/Charts/ChartLine/ChartLine";
+import Loader from 'components/Loader/Loader';
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import './SessionsAverage.css';
+import 'containers/SessionsAverage/SessionsAverage.css';
 
 class SessionsAverage extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class SessionsAverage extends Component {
         .then((response) => {
             this.setState({
                 loading: false,
-                userAverageData: response.content,
+                userAverageData: response,
             });
         });
     }

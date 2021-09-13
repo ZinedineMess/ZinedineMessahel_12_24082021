@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from "react";
 
 class ChartPie extends Component {
-    render() {
-        return this.getChartPie();
-    }
-
     // Build Pie Chart
-    getChartPie = () => {
+    render() {
         return (
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>

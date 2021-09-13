@@ -1,19 +1,19 @@
-import ApiProvider from '../../services/Api/ApiProvider';
+import ApiProvider from 'services/Api/ApiProvider';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // ASSETS 
-import calories from '../../assets/macroTracker/calories.png';
-import protein from '../../assets/macroTracker/protein.png';
-import carbohydrates from '../../assets/macroTracker/carbohydrates.png';
-import lipids from '../../assets/macroTracker/lipids.png';
+import calories from 'assets/macroTracker/calories.png';
+import protein from 'assets/macroTracker/protein.png';
+import carbohydrates from 'assets/macroTracker/carbohydrates.png';
+import lipids from 'assets/macroTracker/lipids.png';
 // CHARTS
-import Welcome from '../../components/Welcome/Welcome';
-import DailyActivity from '../DailyActivity/DailyActivity';
-import SessionsAverage from '../SessionsAverage/SessionsAverage';
-import PerformanceAverage from '../PerformanceAverage/PerformanceAverage';
-import GoalScore from '../GoalScore/GoalScore';
-import MacroTracker from '../../components/MacroTracker/MacroTracker';
-import ErrorModal from '../../components/ErrorModal/ErrorModal';
+import Welcome from 'components/Welcome/Welcome';
+import DailyActivity from 'containers/DailyActivity/DailyActivity';
+import SessionsAverage from 'containers/SessionsAverage/SessionsAverage';
+import PerformanceAverage from 'containers/PerformanceAverage/PerformanceAverage';
+import GoalScore from 'containers/GoalScore/GoalScore';
+import MacroTracker from 'components/MacroTracker/MacroTracker';
+import ErrorModal from 'components/ErrorModal/ErrorModal';
 
 class Charts extends Component {
     constructor(props) {
@@ -34,13 +34,13 @@ class Charts extends Component {
         .getMainData(this.state.id)
         .then((response) => {
             this.setState({
-                welcomeData: response.content.firstName,
+                welcomeData: response.firstName,
                 goalScoreData: [
-                    { name: "completed", value: response.content.userScore, fillColor: "#e60000" },
-                    { name: "not-completed", value: 1 - response.content.userScore, fillColor: "transparent" },
+                    { name: "completed", value: response.userScore, fillColor: "#e60000" },
+                    { name: "not-completed", value: 1 - response.userScore, fillColor: "transparent" },
                 ],
-                goalScorePercentage : response.content.userScore * 100,
-                macroTrackerData: response.content.macroTracker,
+                goalScorePercentage : response.userScore * 100,
+                macroTrackerData: response.macroTracker,
                 errorModal: false,
             });
         })

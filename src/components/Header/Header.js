@@ -1,7 +1,7 @@
-import './Header.css';
+import 'components/Header/Header.css';
 import {Link} from 'react-router-dom';
-import logo from '../../assets/logo/logo.png';
-import MainNavBar from '../MainNavBar/MainNavBar';
+import logo from 'assets/logo/logo.png';
+import MainNavBar from 'components/MainNavBar/MainNavBar';
 import React, {Component} from 'react';
 
 class Header extends Component {

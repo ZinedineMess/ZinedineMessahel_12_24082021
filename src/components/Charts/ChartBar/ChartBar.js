@@ -1,15 +1,11 @@
 import {BarChart, Bar, CartesianGrid, Tooltip, ResponsiveContainer, XAxis, YAxis} from 'recharts';
-import CustomTooltipDailyActivity from '../CustomTooltip/CustomTooltipDailyActivity/CustomTooltipDailyActivity';
+import CustomTooltipDailyActivity from 'components/Charts/CustomTooltip/CustomTooltipDailyActivity/CustomTooltipDailyActivity';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 class ChartBar extends Component {
-    render() {
-        return this.getChartBar();
-    }
-
     // Build Bar Chart
-    getChartBar = () => {
+    render() {
         return (
             <ResponsiveContainer width="100%" height="90%">
                 <BarChart

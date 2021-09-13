@@ -1,15 +1,11 @@
-import CustomTooltipSessionsAverage from "../CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
+import CustomTooltipSessionsAverage from "components/Charts/CustomTooltip/CustomTooltipSessionsAverage/CustomTooltipSessionsAverage";
 import {Line, LineChart, Tooltip, XAxis, YAxis, ResponsiveContainer} from "recharts";
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
 class ChartLine extends Component {
-    render() {
-        return this.getChartLine();
-    }
-
     // Build Line Chart 
-    getChartLine = () => {
+    render() {
         return (
             <div className="lineChart">
                 <ResponsiveContainer width="100%" height="100%">

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './SideBarNav.css';
+import 'components/SideBarNav/SideBarNav.css';
 
-import bike from '../../assets/sideNavBar/bike.png';
-import IconSideNavBar from '../IconSideNavBar/IconSideNavBar';
-import swim from '../../assets/sideNavBar/swim.png';
-import weight from '../../assets/sideNavBar/weight.png';
-import yoga from '../../assets/sideNavBar/yoga.png';
+import bike from 'assets/sideNavBar/bike.png';
+import IconSideNavBar from 'components/IconSideNavBar/IconSideNavBar';
+import swim from 'assets/sideNavBar/swim.png';
+import weight from 'assets/sideNavBar/weight.png';
+import yoga from 'assets/sideNavBar/yoga.png';
 
 class SideBarNav extends Component {
     render() {

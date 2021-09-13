@@ -1,7 +1,7 @@
-import error404 from '../../assets/error404/error404.gif';
-import './Error404.css';
+import error404 from 'assets/error404/error404.gif';
+import 'components/Error404/Error404.css';
 import {Link} from 'react-router-dom';
-import logo from '../../assets/logo/logo.png';
+import logo from 'assets/logo/logo.png';
 import React, { Component, Fragment } from 'react';
 
 class Error404 extends Component {
