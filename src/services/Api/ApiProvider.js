@@ -8,6 +8,7 @@ class ApiProvider {
 
     /**
      * Fetch USER_MAIN_DATA from API
+     * @param {string} id - user id
      * @return {Array.Object}
      */
     async getMainData(id) {
@@ -23,6 +24,7 @@ class ApiProvider {
 
     /**
      * Fetch USER_ACTIVITY from API
+     * @param {string} id - user id
      * @return {Array.Object}
      */
     async getUserDailyActivityData(id) {
@@ -38,6 +40,7 @@ class ApiProvider {
 
     /**
      * Fetch USER_AVERAGE_SESSIONS from API
+     * @param {string} id - user id
      * @return {Array.Object}
      */
     async getUserAverageSessionData(id) {
@@ -54,6 +57,7 @@ class ApiProvider {
 
     /**
      * Fetch USER_PERFORMANCE from API
+     * @param {string} id - user id
      * @return {Array.Object}
      */
     async getUserPerformanceData(id) {
